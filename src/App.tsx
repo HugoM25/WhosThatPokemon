@@ -15,6 +15,7 @@ type AppState = {
   score: number;
   pokemonImage: string;
   pokemonName: string;
+  isFound: boolean;
 }
 
 
@@ -26,7 +27,8 @@ class App extends React.Component<{}, AppState> {
     this.state = {
       score: 0,
       pokemonImage: '',
-      pokemonName: ''
+      pokemonName: '', 
+      isFound: false,
     }
     this.selectRandomPokemon = this.selectRandomPokemon.bind(this);
   }
@@ -46,7 +48,7 @@ class App extends React.Component<{}, AppState> {
 
     console.log(pkmName);
     /*Set the state to the random pokemon*/
-    this.setState({pokemonImage: randomPokemon.image, pokemonName: pkmName});
+    this.setState({pokemonImage: randomPokemon.image, pokemonName: pkmName, isFound: false});
   }
 
   render () {
@@ -55,7 +57,7 @@ class App extends React.Component<{}, AppState> {
         <Header />
         <div className='main-content'>
           <ScoreBoard />
-          <PlayZone pokemonImage={this.state.pokemonImage} pokemonName={this.state.pokemonName} onSuccess={this.selectRandomPokemon}/>
+          <PlayZone isFound={this.state.isFound} pokemonImage={this.state.pokemonImage} pokemonName={this.state.pokemonName} onSuccess={this.selectRandomPokemon}/>
           <Settings />
         </div>
         <Footer />

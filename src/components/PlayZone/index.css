@@ -6,7 +6,6 @@
     
     align-items : center;
     justify-content : center;
-    /*Make item fit the whole space */ 
     height : 100%;
     width: 80%;
 }
@@ -41,6 +40,7 @@
 }
 .poke-display {
     display : flex;
+    position: relative;
     flex-direction : column;
     align-items : center;
     justify-content : center;
@@ -50,20 +50,23 @@
     width: 100%;
 }
 
-
-.background-img {
-    width: 80%;
-    z-index: -1;
-}
-
 .poke-img {
     position: relative;
-    height: 80%;
+    height: 50%;
     width: auto;
 }
 
+.background-img {
+    position: absolute;
+    height: 90%;
+    width: auto;
+    z-index: -1;
+    
+}
+
 .rotate {
-    animation: rotation 20s infinite linear;
+    animation: rotation 40s infinite linear;
+    transform-origin: center center;
 }
 
 @keyframes rotation {
@@ -77,3 +80,7 @@
       transform: rotate(359deg) scale(1);
     }
 }
+
+
+
+

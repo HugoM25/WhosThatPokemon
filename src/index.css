@@ -7,7 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background: radial-gradient(circle, rgba(247,90,18,1) 15%, rgba(255,21,0,1) 90%);
-
+  /* background: repeating-radial-gradient(
+      circle,
+      rgba(247,90,18,1) 0px,
+      rgba(247,90,18,1) 30px,
+      rgba(255,21,0,1) 30px,
+      rgba(255,21,0,1) 60px
+  ); */
 }
 
 code {
