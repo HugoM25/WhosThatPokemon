@@ -4,14 +4,14 @@ import Background from '../../assets/images/background.png';
 
 type PlayZoneProps = {
     pokemonName: string;
-    pokemonImage: string;
+    pokemonNumber: string;
     isFound: boolean;
     onSuccess: () => void;
 }
 
 type PlayZoneState = {
     pokemonName: string;
-    pokemonImage: string;
+    pokemonNumber: string;
     currentGuess: string;
     isFound: boolean;
     timeBeforeNext: number;
@@ -25,7 +25,7 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
         super(props);
         this.state = {
             pokemonName: props.pokemonName,
-            pokemonImage: props.pokemonImage,
+            pokemonNumber: props.pokemonNumber,
             currentGuess: '',
             isFound: props.isFound,
             timeBeforeNext: 0
@@ -37,11 +37,13 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
         if (event.target.value.toLowerCase() === this.props.pokemonName.toLowerCase() && !this.props.isFound) {
             console.log('correct');
             this.setState({isFound: true, currentGuess: ''});
-            this.setState({timeBeforeNext: 3});
-            setTimeout(this.coolDownBeforeNext, 1000);
+            
+            this.launchNextPokemon();
+            //this.setState({timeBeforeNext: 3});
+            
+            //setTimeout(this.coolDownBeforeNext, 1000);
         }
         else {
-            console.log('incorrect');
         }
     }
 
@@ -65,11 +67,11 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
         return (
         <div className="play-zone">
             <div className='poke-display'>
-                <img src={this.props.pokemonImage} alt="pokemon" className={`${this.state.isFound ? "" : "hide-img"} poke-img`} />
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.pokemonNumber}.png`} alt="pokemon" className={`${this.state.isFound ? "" : "hide-img"} poke-img`} />
                 <img src={Background} alt="background" className='background-img rotate'/>
             </div>
             <div className='input-spot'>
-                {this.state.timeBeforeNext > 0 ? <p>Next in {this.state.timeBeforeNext}</p> : <input type="text" value={this.state.currentGuess} className='guess-input' onChange={(e) => this.verifyGuess(e)}/>}
+                {this.state.timeBeforeNext > 0 ? <p className='countdown'>Next in {this.state.timeBeforeNext}</p> : <input type="text" value={this.state.currentGuess} className='guess-input' onChange={(e) => this.verifyGuess(e)}/>}
             </div>
         </div>
         );

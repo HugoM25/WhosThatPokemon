@@ -7,13 +7,9 @@ import Settings from './components/Settings';
 import Footer from './components/Footer';
 import ScoreBoard from './components/ScoreBoard';
 
-
-import pokedexData from './assets/JSON/pokedex.json';
-
-
 type AppState = {
   score: number;
-  pokemonImage: string;
+  pokemonNumber: string;
   pokemonName: string;
   isFound: boolean;
 }
@@ -26,7 +22,7 @@ class App extends React.Component<{}, AppState> {
     super(props);
     this.state = {
       score: 0,
-      pokemonImage: '',
+      pokemonNumber: '',
       pokemonName: '', 
       isFound: false,
     }
@@ -37,30 +33,51 @@ class App extends React.Component<{}, AppState> {
     
     this.selectRandomPokemon();
   }
-
+/*
   selectRandomPokemon () {	
-    /*Select a random pokemon from the json file*/ 
     const pokedexDataJSON = JSON.parse(JSON.stringify(pokedexData));
-    console.log(pokedexDataJSON);
     const randomNum : string = Object.keys(pokedexDataJSON)[Math.floor(Math.random() * Object.keys(pokedexDataJSON).length)];
     const pkmName :string = Object.keys(pokedexDataJSON[randomNum])[0];
     const randomPokemon = pokedexDataJSON[randomNum][pkmName];
 
     console.log(pkmName);
-    /*Set the state to the random pokemon*/
-    this.setState({pokemonImage: randomPokemon.image, pokemonName: pkmName, isFound: false});
+
+    const numParsed = parseInt(randomNum.replace("#",'')).toString();
+    this.setState({pokemonNumber: numParsed, pokemonName: pkmName, isFound: false});
+  }
+*/
+
+  selectRandomPokemon() {
+    /* Select random pokemon between 0-1008*/
+    const randomNum = Math.floor(Math.random() * 1008);
+
+    this.getapi(`https://pokeapi.co/api/v2/pokemon/${randomNum}/`).then(data => {
+      console.log(data);
+      console.log(data.name);
+      this.setState({pokemonNumber: data.id.toString(), pokemonName: data.name, isFound: false});
+    });
+  }
+
+  async getapi(url:string) {
+    const response = await fetch(url);
+    var data = await response.json();
+    return data;
   }
 
   render () {
     return  (
       <div className="main-layout">
-        <Header />
+        <div className="header-content">
+          <Header />
+        </div>
         <div className='main-content'>
           <ScoreBoard />
-          <PlayZone isFound={this.state.isFound} pokemonImage={this.state.pokemonImage} pokemonName={this.state.pokemonName} onSuccess={this.selectRandomPokemon}/>
+          <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonName={this.state.pokemonName} onSuccess={this.selectRandomPokemon}/>
           <Settings />
         </div>
-        <Footer />
+        <div className='footer-content'>
+          <Footer />
+        </div>
       </div>
     );
   }

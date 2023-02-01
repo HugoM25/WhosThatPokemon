@@ -3,12 +3,18 @@
   min-height: 99dvh;
 
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 0.05fr 1fr 0.25fr;
   
 }
 
 .main-content {
-
   display: flex;
   flex-direction: row;
+  max-height: 1fr;
+}
+
+.footer-content {
+}
+
+.header-content {
 }
