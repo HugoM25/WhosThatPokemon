@@ -50,6 +50,8 @@
     position: relative;
     height: 70%;
     width: auto;
+
+    transition: opacity 2s;
 }
 
 .background-img {

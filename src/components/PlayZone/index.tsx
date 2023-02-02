@@ -3,14 +3,14 @@ import './index.css';
 import Background from '../../assets/images/background2.png';
 
 type PlayZoneProps = {
-    pokemonName: string;
+    pokemonNames: any;
     pokemonNumber: string;
     isFound: boolean;
     onSuccess: () => void;
 }
 
 type PlayZoneState = {
-    pokemonName: string;
+    pokemonNames: any;
     pokemonNumber: string;
     currentGuess: string;
     isFound: boolean;
@@ -25,7 +25,7 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
     constructor(props: PlayZoneProps) {
         super(props);
         this.state = {
-            pokemonName: props.pokemonName,
+            pokemonNames: props.pokemonNames,
             pokemonNumber: props.pokemonNumber,
             currentGuess: '',
             isFound: props.isFound,
@@ -34,18 +34,25 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
         }
     }  
 
+
+    cleanString = (str: string) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+
+
     verifyGuess = (event: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({currentGuess: event.target.value});
-        if (event.target.value.toLowerCase() === this.props.pokemonName.toLowerCase() && !this.props.isFound) {
-            console.log('correct');
-            this.setState({isFound: true, currentGuess: ''});
+        /* verify if the guess is correct for any name in any language */
+        for (const [key, value] of Object.entries(this.state.pokemonNames)) {
+            if (this.cleanString(event.target.value) === this.cleanString(value as string)) {
+                console.log('correct');
+                this.setState({isFound: true, currentGuess: ''});
 
-            /*Launch next pokemon after 1s*/
-            setTimeout(() => {
-                this.launchNextPokemon();
-            }, 1000);
-        }
-        else {
+                /*Launch next pokemon after 1s*/
+                setTimeout(() => {
+                    this.launchNextPokemon();
+                }, 1000);
+            }
         }
     }
 
@@ -54,11 +61,10 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
     }
 
     static getDerivedStateFromProps(props: PlayZoneProps, state: PlayZoneState) {
-        if (props.pokemonName !== state.pokemonName) {
+        if (props.pokemonNumber !== state.pokemonNumber) {
             return {
-                pokemonName: props.pokemonName,
+                pokemonNames: props.pokemonNames,
                 pokemonNumber: props.pokemonNumber,
-                isFound: false,
                 isImgLoaded: false
             };
         }
@@ -74,7 +80,7 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
                     alt="pokemon" 
                     className={`${this.state.isFound ? "" : "hide-img"} poke-img`}
                     style= {{opacity: this.state.isImgLoaded ? 1 : 0}}
-                    onLoad={() => this.setState({isImgLoaded: true})}   
+                    onLoad={() => this.setState({isImgLoaded: true, isFound: false})}   
                 />
                 <img src={Background} alt="background" className='background-img rotate'/>
             </div>
