@@ -33,19 +33,6 @@ class App extends React.Component<{}, AppState> {
     
     this.selectRandomPokemon();
   }
-/*
-  selectRandomPokemon () {	
-    const pokedexDataJSON = JSON.parse(JSON.stringify(pokedexData));
-    const randomNum : string = Object.keys(pokedexDataJSON)[Math.floor(Math.random() * Object.keys(pokedexDataJSON).length)];
-    const pkmName :string = Object.keys(pokedexDataJSON[randomNum])[0];
-    const randomPokemon = pokedexDataJSON[randomNum][pkmName];
-
-    console.log(pkmName);
-
-    const numParsed = parseInt(randomNum.replace("#",'')).toString();
-    this.setState({pokemonNumber: numParsed, pokemonName: pkmName, isFound: false});
-  }
-*/
 
   selectRandomPokemon() {
     /* Select random pokemon between 0-1008*/

@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import Background from '../../assets/images/background.png';
+import Background from '../../assets/images/background2.png';
 
 type PlayZoneProps = {
     pokemonName: string;
@@ -15,6 +15,7 @@ type PlayZoneState = {
     currentGuess: string;
     isFound: boolean;
     timeBeforeNext: number;
+    isImgLoaded : boolean;
 }
 
 class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
@@ -28,7 +29,8 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
             pokemonNumber: props.pokemonNumber,
             currentGuess: '',
             isFound: props.isFound,
-            timeBeforeNext: 0
+            timeBeforeNext: 0,
+            isImgLoaded: false
         }
     }  
 
@@ -37,37 +39,43 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
         if (event.target.value.toLowerCase() === this.props.pokemonName.toLowerCase() && !this.props.isFound) {
             console.log('correct');
             this.setState({isFound: true, currentGuess: ''});
-            
-            this.launchNextPokemon();
-            //this.setState({timeBeforeNext: 3});
-            
-            //setTimeout(this.coolDownBeforeNext, 1000);
+
+            /*Launch next pokemon after 1s*/
+            setTimeout(() => {
+                this.launchNextPokemon();
+            }, 1000);
         }
         else {
-        }
-    }
-
-    coolDownBeforeNext = () => {
-        this.setState({timeBeforeNext: this.state.timeBeforeNext - 1});
-
-        if (this.state.timeBeforeNext <= 0) {
-            this.launchNextPokemon();
-        }
-        else {
-            setTimeout(this.coolDownBeforeNext, 1000);
         }
     }
 
     launchNextPokemon = () => {
         this.props.onSuccess();
-        this.setState({isFound: this.props.isFound});
+    }
+
+    static getDerivedStateFromProps(props: PlayZoneProps, state: PlayZoneState) {
+        if (props.pokemonName !== state.pokemonName) {
+            return {
+                pokemonName: props.pokemonName,
+                pokemonNumber: props.pokemonNumber,
+                isFound: false,
+                isImgLoaded: false
+            };
+        }
+        return null;
     }
 
     render() {
         return (
         <div className="play-zone">
             <div className='poke-display'>
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.pokemonNumber}.png`} alt="pokemon" className={`${this.state.isFound ? "" : "hide-img"} poke-img`} />
+                <img 
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.pokemonNumber}.png`} 
+                    alt="pokemon" 
+                    className={`${this.state.isFound ? "" : "hide-img"} poke-img`}
+                    style= {{opacity: this.state.isImgLoaded ? 1 : 0}}
+                    onLoad={() => this.setState({isImgLoaded: true})}   
+                />
                 <img src={Background} alt="background" className='background-img rotate'/>
             </div>
             <div className='input-spot'>

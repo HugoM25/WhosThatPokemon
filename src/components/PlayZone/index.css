@@ -44,7 +44,6 @@
     margin-top : 10px;
     margin-bottom : 10px;
     height: 80%;
-    border: solid blue;
 }
 
 .poke-img {
@@ -55,7 +54,7 @@
 
 .background-img {
     position: absolute;
-    height: 60%;
+    height: 80%;
     width: auto;
     z-index: -1;
     
