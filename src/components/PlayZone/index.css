@@ -4,8 +4,8 @@
     position: relative;
     align-items : center;
     justify-content : center;
-    min-height : 100%;
-    width: 50%;
+    height: 80vh;
+    width: 100%;
 }
 
 .guess-input {
@@ -14,6 +14,7 @@
     background-color: transparent;
     color: white;
     border: 2px solid white;
+    outline: white;
 }
 
 .input-spot {
@@ -26,11 +27,6 @@
 
 }
 
-.poke-img {
-    height: 100%;
-    width: auto;
-    object-fit : cover;
-}
 
 
 .hide-img {
@@ -41,8 +37,6 @@
     flex-direction : column;
     align-items : center;
     justify-content : center;
-    margin-top : 10px;
-    margin-bottom : 10px;
     height: 80%;
 }
 
@@ -50,7 +44,6 @@
     position: relative;
     height: 70%;
     width: auto;
-
     transition: opacity 2s;
 }
 
@@ -63,7 +56,7 @@
 }
 
 .rotate {
-    animation: rotation 40s infinite linear;
+    animation: rotation 20s infinite linear;
     transform-origin: center center;
 }
 
@@ -71,8 +64,14 @@
     0% {
       transform: rotate(0deg) scale(1);
     }
+    25% {
+        transform: rotate(90deg) scale(1.1);
+    }
     50% {
         transform: rotate(180deg) scale(1.2);
+    }
+    75% {
+        transform: rotate(270deg) scale(1.1);
     }
     100% {
       transform: rotate(359deg) scale(1);

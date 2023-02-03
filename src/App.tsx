@@ -33,16 +33,6 @@ class App extends React.Component<{}, AppState> {
     
     this.selectRandomPokemon();
   }
-/*
-  selectRandomPokemonOld() {
-    const randomNum = Math.floor(Math.random() * 1008);
-
-    this.getapi(`https://pokeapi.co/api/v2/pokemon/${randomNum}/`).then(data => {
-      console.log(data);
-      console.log(data.name);
-      this.setState({pokemonNumber: data.id.toString(), pokemonName: data.name, isFound: false});
-    });
-  }*/
 
   selectRandomPokemon() {
     /*Select random pokemon between 1-1008*/
@@ -50,14 +40,12 @@ class App extends React.Component<{}, AppState> {
 
     /*Get this pokemon species*/ 
     this.getapi(`https://pokeapi.co/api/v2/pokemon-species/${randomNum}/`).then(data => {
-      console.log(data);
-      console.log(data.name);
-      /*Get the english name of the pokemon*/
 
       const names : any = {};
       data.names.forEach((name: any) => {
           names[name.language.name] = name.name;
       });
+      console.log(names);
 
       this.setState({pokemonNumber: data.id.toString(), pokemonNames: names, isFound: false});
 
@@ -73,18 +61,25 @@ class App extends React.Component<{}, AppState> {
 
   render () {
     return  (
+      
       <div className="main-layout">
         <div className="header-content">
           <Header />
         </div>
         <div className='main-content'>
-          <ScoreBoard />
-          <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.selectRandomPokemon}/>
-          <Settings />
+          <div className='tile'>
+            <ScoreBoard />
+          </div>
+          <div className='tile'>
+            <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.selectRandomPokemon}/>
+          </div>
+          <div className='tile'>
+            <Settings />
+          </div>
         </div>
         <div className='footer-content'>
           <Footer />
-        </div>
+          </div>
       </div>
     );
   }
