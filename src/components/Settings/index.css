@@ -16,7 +16,7 @@
     grid-template-columns: repeat(3,1fr);
     
     gap: 10px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .button-settings {
@@ -24,7 +24,21 @@
     border: none;
     color: white;
     border-radius: 8px;
-    font-size: 20px;
+    font-size: 15px;
+    height: 100%;
     width: 100%;
-    
+}
+
+.button-settings:hover {
+    background-color: #3d3d3d;
+}
+
+.settings-subtitle {
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.active {
+    background-color: grey;
 }

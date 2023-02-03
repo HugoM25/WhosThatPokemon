@@ -2,7 +2,6 @@
     text-align: center;
     color: white;
     position: relative;
-    border: 1px solid white;
     
     justify-content: center;
     height: 100%;
@@ -11,7 +10,6 @@
 
 
 .header-img-title {
-    border: green solid;
 }
 
 

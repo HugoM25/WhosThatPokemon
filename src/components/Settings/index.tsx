@@ -13,17 +13,58 @@ const generations = [
     {id: 9, name: 'Generation IX'}
 ]
 
-class Settings extends React.Component {
+type GenActive = {
+    id: number;
+    name: string;
+    active: boolean;
+}
+
+type SettingsState = {
+    generations: GenActive[];
+}
+
+type SettingsProps = {
+    changeGenerationsAvailable : (generations: GenActive[]) => void
+}
+
+class Settings extends React.Component<SettingsProps, SettingsState> {
+
+    state : SettingsState;
+    
+    constructor(props: any) {
+        super(props);
+
+        this.state = {
+            generations: generations.map((generation) => {
+                return {
+                    id: generation.id,
+                    name: generation.name,
+                    active: true
+                }
+            })
+        }
+    }
+
+    switchGeneration(index: number) {
+        const generations = this.state.generations;
+        generations[index].active = !generations[index].active;
+        this.setState({
+            generations: generations
+        })
+    }
+
     render () {
         return (
             <div className="settings">
                 <h1 className='settings-title'>Settings</h1>
+
+                <h2 className='settings-subtitle'>Generations</h2>
                 <div className="button-container">
                 {
                     generations.map((generation) => {
                         return (
                             <div className="generation" key={generation.id}>
-                                <button className="button-settings">
+                                <button className={`button-settings ${this.state.generations[generation.id-1].active ? 'active': null}`} onClick={() => this.switchGeneration(generation.id-1)}>
                                     <span>{generation.name}</span>
                                 </button>
                             </div>

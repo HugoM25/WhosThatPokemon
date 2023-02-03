@@ -59,6 +59,11 @@ class App extends React.Component<{}, AppState> {
     return data;
   }
 
+
+  changeGenAvailable = (generations: any) => {
+    console.log(generations);
+  }
+
   render () {
     return  (
       
@@ -74,7 +79,7 @@ class App extends React.Component<{}, AppState> {
             <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.selectRandomPokemon}/>
           </div>
           <div className='tile'>
-            <Settings />
+            <Settings  changeGenerationsAvailable={() => this.changeGenAvailable}/>
           </div>
         </div>
         <div className='footer-content'>
