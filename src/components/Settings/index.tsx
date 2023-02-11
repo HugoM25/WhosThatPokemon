@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.css';
+import { GenActive } from 'models/pokemonModel';
 
 const generations = [
     {id: 1, name: 'Generation I'},
@@ -13,15 +14,12 @@ const generations = [
     {id: 9, name: 'Generation IX'}
 ]
 
-type GenActive = {
-    id: number;
-    name: string;
-    active: boolean;
-}
+
 
 type SettingsState = {
     generations: GenActive[];
 }
+
 
 type SettingsProps = {
     changeGenerationsAvailable : (generations: GenActive[]) => void
@@ -46,11 +44,11 @@ class Settings extends React.Component<SettingsProps, SettingsState> {
     }
 
     switchGeneration(index: number) {
+        console.log(index);
         const generations = this.state.generations;
         generations[index].active = !generations[index].active;
-        this.setState({
-            generations: generations
-        })
+
+        this.props.changeGenerationsAvailable(generations);
     }
 
     render () {
