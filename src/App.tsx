@@ -9,6 +9,8 @@ import ScoreBoard from './components/ScoreBoard';
 
 import { GenActive } from 'models/pokemonModel'; 
 
+import data from 'assets/JSON/data.json';
+
 type AppState = {
   score: number;
   pokemonNumber: string;
@@ -48,54 +50,45 @@ class App extends React.Component<{}, AppState> {
   }
 
   /*Ugly code, but it works*/
-  checksIfPokemonIsInSelectedGenerations(pokemonNumber: number) {
-    if (pokemonNumber < 0) {
-      return false;
-    }
-    if (pokemonNumber < 152) {
-      return this.state.genActive[0].active;
-    }
-    else if (pokemonNumber < 252) {
-      return this.state.genActive[1].active;
-    }
-    else if (pokemonNumber < 387) {
-      return this.state.genActive[2].active;
-    }
-    else if (pokemonNumber < 494) {
-      return this.state.genActive[3].active;
-    }
-    else if (pokemonNumber < 650) {
-      return this.state.genActive[4].active;
-    }
-    else if (pokemonNumber < 722) {
-      return this.state.genActive[5].active;
-    }
-    else if (pokemonNumber < 810) {
-      return this.state.genActive[6].active;
-    }
-    else if (pokemonNumber < 898) {
-      return this.state.genActive[7].active;
-    }
-    else if (pokemonNumber < 1009) {
-      return this.state.genActive[8].active;
-    }
-    else {
-      return false;
-    }
-  }
+  
 
   selectRandomPokemon() {
     console.log(this.state.genActive);
 
+    /*Select random generation after counting generations actives*/
+    let count = 0;
+    this.state.genActive.forEach((gen) => {
+      if(gen.active) {
+        count++;
+      }
+    });
+
+    let randomGen = Math.floor(Math.random() * count +1);
+
+    /*Select random active generation in this.state.genActive*/
+    let genSelected = 0;
+    let genSelectedId = 0;
+    this.state.genActive.forEach((gen) => {
+      if(gen.active) {
+        genSelected++;
+        if(genSelected === randomGen) {
+          genSelectedId = gen.id;
+        }
+      }
+    });
+
+    /*Use data from JSON file to get the range of pokemon numbers for this generation*/
+    let min = data.generationsID[genSelectedId-1].generationNbStart;    ;
+    let max = data.generationsID[genSelectedId-1].generationNbEnd;
+    
+    
     /*Select random pokemon between 1-1008*/
-    let randomNum = Math.floor(Math.random() * 1007 +1);
+    let randomNum = Math.floor(Math.random() * (max-min) + min);
 
-    /*Checks if number of pokemon is in the selected generations*/
-    while (!this.checksIfPokemonIsInSelectedGenerations(randomNum)) {
-      console.log('Pokemon not in selected generations');
-      randomNum = Math.floor(Math.random() * 1007 +1);
-    }
-
+    console.log(genSelectedId);
+    console.log(min);
+    console.log(max);
+    console.log(randomNum);
 
 
     /*Get this pokemon species*/ 
@@ -136,7 +129,7 @@ class App extends React.Component<{}, AppState> {
             <ScoreBoard />
           </div>
           <div className='tile'>
-            <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.selectRandomPokemon}/>
+            <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.selectRandomPokemon} onSkip={this.selectRandomPokemon}/>
           </div>
           <div className='tile'>
             <Settings  changeGenerationsAvailable={(generations) => this.changeGenAvailable(generations)}/>

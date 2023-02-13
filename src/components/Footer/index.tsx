@@ -6,7 +6,7 @@ class Footer extends React.Component {
         return (
         <div className="footer">
             <p className='text-desc'>Find the source code on this {""} 
-                <a className="link-github"href="https://github.com/HugoM25/WhosThatPokemonWebApp">page</a> 
+                <a className="link-github" href="https://github.com/HugoM25/WhosThatPokemonWebApp" target='_blank'>page</a> 
             </p>
         </div>
         );

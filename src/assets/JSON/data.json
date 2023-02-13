@@ -1,0 +1,41 @@
+{
+    "generationsID" : [
+        {
+            "generationNbStart" : 1,
+            "generationNbEnd" : 151
+        },
+        {
+            "generationNbStart" : 152,
+            "generationNbEnd" : 251
+        },
+        {
+            "generationNbStart" : 252,
+            "generationNbEnd" : 386
+        },
+        {
+            "generationNbStart" : 387,
+            "generationNbEnd" : 493
+        },
+        {
+            "generationNbStart" : 494,
+            "generationNbEnd" : 649
+        },
+        {
+            "generationNbStart" : 650,
+            "generationNbEnd" : 721
+        },
+        {
+            "generationNbStart" : 722,
+            "generationNbEnd" : 809
+        },
+        {
+            "generationNbStart" : 810,
+            "generationNbEnd" : 898
+        }, 
+        {
+            "generationNbStart" : 899,
+            "generationNbEnd" : 1008
+        }
+
+    ]
+}

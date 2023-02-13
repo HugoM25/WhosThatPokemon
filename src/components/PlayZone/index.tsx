@@ -7,6 +7,7 @@ type PlayZoneProps = {
     pokemonNumber: string;
     isFound: boolean;
     onSuccess: () => void;
+    onSkip: () => void;
 }
 
 type PlayZoneState = {
@@ -86,6 +87,9 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
             </div>
             <div className='input-spot'>
                 {this.state.timeBeforeNext > 0 ? <p className='countdown'>Next in {this.state.timeBeforeNext}</p> : <input type="text" value={this.state.currentGuess} className='guess-input' onChange={(e) => this.verifyGuess(e)}/>}
+                <button className='skip-button' onClick={this.props.onSkip}>
+                    <span>skip</span>
+                </button>
             </div>
         </div>
         );

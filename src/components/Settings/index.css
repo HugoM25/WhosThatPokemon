@@ -23,14 +23,17 @@
     background-color: black;
     border: none;
     color: white;
-    border-radius: 8px;
     font-size: 15px;
     height: 100%;
     width: 100%;
+
+    transition: 0.2s;
 }
 
-.button-settings:hover {
-    background-color: #3d3d3d;
+
+
+.button-settings:active {
+    transform: scale(0.95);
 }
 
 .settings-subtitle {
