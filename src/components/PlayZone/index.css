@@ -31,6 +31,7 @@
 
 .hide-img {
     filter: contrast(0%) grayscale(100%) brightness(0%);
+    pointer-events: none
 }
 .poke-display {
     display : flex;

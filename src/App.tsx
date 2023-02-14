@@ -17,6 +17,9 @@ type AppState = {
   pokemonNames: any;
   isFound: boolean;
   genActive: GenActive[];
+
+  currentStreak: number;
+  bestStreak: number;
 }
 
 
@@ -39,7 +42,9 @@ class App extends React.Component<{}, AppState> {
         {id: 7, name: 'Generation VII', active: true},
         {id: 8, name: 'Generation VIII', active: true},
         {id: 9, name: 'Generation IX', active: true}
-      ]
+      ],
+      currentStreak:0,
+      bestStreak:0
     }
     this.selectRandomPokemon = this.selectRandomPokemon.bind(this);
   }
@@ -106,6 +111,23 @@ class App extends React.Component<{}, AppState> {
     );
   }
 
+  foundThePokemon = () => {
+    const newScore = this.state.currentStreak+1; 
+    this.setState({
+      currentStreak: newScore,
+      bestStreak: this.state.bestStreak <= this.state.currentStreak ? newScore : this.state.bestStreak
+    })
+    this.selectRandomPokemon();
+  }
+
+  failedThePokemon = () => {
+    this.setState({
+      bestStreak : this.state.bestStreak < this.state.currentStreak ? this.state.currentStreak : this.state.bestStreak,
+      currentStreak: 0
+    })
+    this.selectRandomPokemon();
+  }
+
   async getapi(url:string) {
     const response = await fetch(url);
     var data = await response.json();
@@ -126,10 +148,10 @@ class App extends React.Component<{}, AppState> {
         </div>
         <div className='main-content'>
           <div className='tile'>
-            <ScoreBoard />
+            <ScoreBoard bestStreak={this.state.bestStreak} currentStreak={this.state.currentStreak}/>
           </div>
           <div className='tile'>
-            <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.selectRandomPokemon} onSkip={this.selectRandomPokemon}/>
+            <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.foundThePokemon} onSkip={this.failedThePokemon}/>
           </div>
           <div className='tile'>
             <Settings  changeGenerationsAvailable={(generations) => this.changeGenAvailable(generations)}/>
