@@ -1,30 +1,22 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-
   background-image: radial-gradient(circle, rgba(247,90,18,1) 15%, rgba(255,21,0,1) 90%);
   background-blend-mode: screen;
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-position: 0 0;
 
-  /*
+  overflow-x: hidden;
+
   background: rgb(247,90,18);
   background: linear-gradient(20deg, rgba(247,90,18,1) 15%, rgba(255,21,0,1) 90%);
-  
-  background: radial-gradient(circle, rgba(247,90,18,1) 15%, rgba(255,21,0,1) 90%);
-   background: repeating-radial-gradient(
-      circle,
-      rgba(247,90,18,1) 0px,
-      rgba(247,90,18,1) 30px,
-      rgba(255,21,0,1) 30px,
-      rgba(255,21,0,1) 60px
-  );*/
+
+
 
 }
 

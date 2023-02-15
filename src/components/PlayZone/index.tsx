@@ -75,7 +75,7 @@ class PlayZone extends React.Component<PlayZoneProps, PlayZoneState> {
     render() {
         return (
         <div className="play-zone">
-            <div className='poke-display'>
+            <div className='display-spot'>
                 <img 
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.props.pokemonNumber}.png`} 
                     alt="pokemon" 

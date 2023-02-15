@@ -1,60 +1,57 @@
+
+
 .main-layout {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr;
-  grid-template-columns: 1fr;
-  }
+    
+    grid-gap: 10px;
+    padding: 10px;
 
-.main-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 0.2fr 0.8fr 0.2fr;
+    grid-template-rows: auto 1fr auto;
 
-  min-width: 100vw;
-  align-content: center;
-  justify-content: center;
-
+    grid-template-areas:
+        "header header header"
+        "scoreboard play-area settings"
+        "footer footer footer";
+    min-height: 96dvh;
 }
 
-.footer-content {
-  height: 100%;
-  width: 100%;
+/* .main-layout > div {
+  border: solid slateblue;
+} */
+
+.cell-settings {
+  grid-area: settings;
 }
 
-.jsp  {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+.cell-play-area {
+  grid-area: play-area;
 }
 
-.tile {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+.cell-scoreboard {
+  grid-area: scoreboard;
 }
 
-.main-title {
-  font-size: 10px;
+.cell-header {
+  grid-area: header;
 }
 
-.header-content {
-  height: 100%;
-  width: 100%;
-  align-content: center;
-
-  max-height: 10vh;
+.cell-footer {
+  grid-area: footer;
 }
 
 
+@media (max-width: 1024px) {
+  .main-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+          "header"
+          "scoreboard"
+          "play-area"
+          "settings"
+          "footer";
+      overflow: hidden;
+  }   
 
-@media only screen and (max-width: 768px){
-  .main-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 8fr 1fr;
-  }
 }
-

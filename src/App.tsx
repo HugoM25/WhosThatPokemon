@@ -143,23 +143,25 @@ class App extends React.Component<{}, AppState> {
     return  (
       
       <div className="main-layout">
-        <div className="header-content">
+
+        <div className="cell-header">
           <Header />
         </div>
-        <div className='main-content'>
-          <div className='tile'>
-            <ScoreBoard bestStreak={this.state.bestStreak} currentStreak={this.state.currentStreak}/>
-          </div>
-          <div className='tile'>
-            <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.foundThePokemon} onSkip={this.failedThePokemon}/>
-          </div>
-          <div className='tile'>
-            <Settings  changeGenerationsAvailable={(generations) => this.changeGenAvailable(generations)}/>
-          </div>
+
+        <div className='cell-scoreboard'>
+          <ScoreBoard bestStreak={this.state.bestStreak} currentStreak={this.state.currentStreak}/>  
         </div>
-        <div className='footer-content'>
+        <div className='cell-play-area'>
+          <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.foundThePokemon} onSkip={this.failedThePokemon}/>
+        </div>
+        <div className='cell-settings'>
+          <Settings  changeGenerationsAvailable={(generations) => this.changeGenAvailable(generations)}/>
+        </div>
+      
+        <div className='cell-footer'>
           <Footer />
-          </div>
+        </div>
+
       </div>
     );
   }

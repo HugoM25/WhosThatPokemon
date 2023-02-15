@@ -1,33 +1,39 @@
 .play-zone {
-    display : flex;
-    flex-direction : column;
-    position: relative;
-    align-items : center;
-    justify-content : center;
-    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     width: 100%;
 }
 
-.guess-input {
-    text-align : center;
-    border-radius: 16px;
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-    outline: white;
+
+.display-spot {
+    position: relative;
+
+    width: 100%;
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .input-spot {
-    height: 10%;
-    width : 100%;
-    display : flex;
-    flex-direction : column;
-    align-items : center;
-    justify-content : center;
+    width: 100%;
+    height: 20%;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
+/*-------------------*/
+/*  Display Spot     */
+/*-------------------*/
 
 .hide-img {
     filter: contrast(0%) grayscale(100%) brightness(0%);
@@ -38,19 +44,20 @@
     flex-direction : column;
     align-items : center;
     justify-content : center;
-    height: 80%;
+    height: 50%;
 }
 
 .poke-img {
     position: relative;
-    height: 70%;
+    height: 50%;
     width: auto;
     transition: opacity 2s;
 }
 
+
 .background-img {
     position: absolute;
-    height: 80%;
+    height: 100%;
     width: auto;
     z-index: -1;
     
@@ -79,15 +86,40 @@
     }
 }
 
-.countdown {
+
+
+/*-------------------*/
+/*  Input Spot       */
+/*-------------------*/
+
+.guess-input {
+    width: 30%;
+    text-align : center;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.2);
     color: white;
+    border: 2px solid white;
+    outline: white;
+    font-size: 1.5em;
 }
 
 .skip-button {
+    padding: 2%;
     color: white;
     background-color: transparent;
     border: none;
     border-radius: 16px;
     outline: none;
     cursor: pointer;
+    font-size: 1em;
 }
+
+
+/*-------------------*/
+
+
+@media (max-width: 1024px) {
+    .guess-input {
+        width: 98%;
+    }
+  }

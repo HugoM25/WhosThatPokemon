@@ -25,10 +25,9 @@ class ScoreBoard extends React.Component<ScoreBoardProps,ScoreBoardState> {
 
     render () {
         return (
-            <div className="score-board">
-                <h1>ScoreBoard</h1>
-                <h2>Best streak {this.props.bestStreak}</h2>
-                <h2>Current streak {this.props.currentStreak}</h2>
+            <div className="scoreboard-container">
+                <h2 className='text-score'> 🏆Best streak  : {this.props.bestStreak}</h2>
+                <h2 className='text-score'> 🔥Current streak : {this.props.currentStreak}</h2>
             </div>
         );
     }

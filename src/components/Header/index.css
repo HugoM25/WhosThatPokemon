@@ -8,11 +8,12 @@
     
 }
 
-
-.header-img-title {
+.image-title {
+    width: 50%;
 }
 
-
-.header-title {
-    height: 100%;
-}
+@media (max-width: 1024px) {
+    .image-title {
+        width: 80%;
+    }
+  }
