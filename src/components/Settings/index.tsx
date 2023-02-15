@@ -53,7 +53,7 @@ class Settings extends React.Component<SettingsProps, SettingsState> {
 
     render () {
         return (
-            <div className="settings">
+            <div className="settings-container">
                 <h2 className='settings-subtitle'>Generations</h2>
                 <div className="button-container">
                 {

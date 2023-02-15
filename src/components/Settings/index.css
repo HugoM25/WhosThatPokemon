@@ -1,10 +1,11 @@
-.settings  {
+.settings-container  {
     display: flex;
     flex-direction: column;
     align-items: center;
 
     width: 100%;
     height: 100%;
+
 }
 
 .settings-title {
@@ -12,6 +13,8 @@
 }
 
 .button-container {
+    height: 50%;
+
     display: grid;
     grid-template-columns: repeat(3,1fr);
     
@@ -20,19 +23,16 @@
 }
 
 .button-settings {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.06);
     border: none;
     color: white;
     font-size: 15px;
     height: 100%;
     width: 100%;
-    /*Create drop shadow only under button*/
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     cursor: pointer;
     transition: 0.2s;
 }
-
-
 
 .button-settings:active {
     transform: scale(0.95);
@@ -45,5 +45,12 @@
 }
 
 .active {
-    background-color: red;
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
+@media (max-width: 1024px) {
+
+}
+
+
+
