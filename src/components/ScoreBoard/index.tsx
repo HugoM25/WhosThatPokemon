@@ -6,22 +6,7 @@ type ScoreBoardProps = {
     bestStreak: number
 }
 
-type ScoreBoardState = {
-    currentStreak: number,
-    bestStreak: number
-}
-
-class ScoreBoard extends React.Component<ScoreBoardProps,ScoreBoardState> {
-
-    state:ScoreBoardState; 
-
-    constructor(props:ScoreBoardProps){
-        super(props);
-        this.state = {
-            currentStreak : 0, 
-            bestStreak : 0
-        }
-    }
+class ScoreBoard extends React.Component<ScoreBoardProps,{}> {
 
     render () {
         return (

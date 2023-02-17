@@ -23,7 +23,7 @@
 }
 
 .button-settings {
-    background-color: rgba(0, 0, 0, 0.06);
+    background-color: rgba(0, 0, 0, 0.4);
     border: none;
     color: white;
     font-size: 15px;
@@ -36,6 +36,7 @@
 
 .button-settings:active {
     transform: scale(0.95);
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .settings-subtitle {
@@ -45,7 +46,8 @@
 }
 
 .active {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.06);
+    border: solid white;
 }
 
 @media (max-width: 1024px) {

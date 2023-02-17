@@ -51,7 +51,7 @@
     position: relative;
     height: 50%;
     width: auto;
-    transition: opacity 2s;
+    transition: opacity 1s;
 }
 
 
@@ -93,7 +93,7 @@
 /*-------------------*/
 
 .guess-input {
-    width: 30%;
+    width: 40%;
     text-align : center;
     border-radius: 8px;
     background-color: rgba(0,0,0,0.2);

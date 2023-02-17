@@ -50,12 +50,8 @@ class App extends React.Component<{}, AppState> {
   }
 
   componentDidMount(): void {
-    
     this.selectRandomPokemon();
   }
-
-  /*Ugly code, but it works*/
-  
 
   selectRandomPokemon() {
     console.log(this.state.genActive);
@@ -152,7 +148,7 @@ class App extends React.Component<{}, AppState> {
           <ScoreBoard bestStreak={this.state.bestStreak} currentStreak={this.state.currentStreak}/>  
         </div>
         <div className='cell-play-area'>
-          <PlayZone isFound={this.state.isFound} pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.foundThePokemon} onSkip={this.failedThePokemon}/>
+          <PlayZone  pokemonNumber={this.state.pokemonNumber} pokemonNames={this.state.pokemonNames} onSuccess={this.foundThePokemon} onSkip={this.failedThePokemon}/>
         </div>
         <div className='cell-settings'>
           <Settings  changeGenerationsAvailable={(generations) => this.changeGenAvailable(generations)}/>
