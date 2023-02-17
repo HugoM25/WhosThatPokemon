@@ -28,7 +28,7 @@ This app is made with react, written in typescript and uses class based react co
  
 ## Features
 
-You can play the game of finding which pokemon is behind the shadow. The site displays your best streak (since the launch of the page) and your current streak. 
+You can play the game of finding which pokemon is behind the shadow. The site displays your best streak of the session and your current streak. 
 
 You can also choose the generation of the pokemon you will have to find. 
 
