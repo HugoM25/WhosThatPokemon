@@ -32,7 +32,9 @@ This app is made with react, written in typescript and uses class based react co
 
 You can play the game of finding which pokemon is behind the shadow. The site displays your best streak of the session and your current streak. 
 
-You can also choose the generation of the pokemon you will have to find. 
+You can also choose the generation of the pokemon you will have to find by selecting or unselecting the differents generations : 
+
+<img align="center" height="500px" src="https://github.com/HugoM25/WhosThatPokemonWebApp/blob/master/example_gen_choose.gif" alt="pokemon_generations_gif" />
 
 You can enter the name of the pokemon in all the languages : 
 
@@ -47,6 +49,7 @@ You can enter the name of the pokemon in all the languages :
 - `roomaji`
 - `zh-Hans`
 - `zh-Hant`
+
 
 
 # License 
