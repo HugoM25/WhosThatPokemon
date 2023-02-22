@@ -1,5 +1,7 @@
 <h1 align="center"> Who's that pokemon ? </h1>
 
+<img align="center" width="100%" src="https://github.com/HugoM25/WhosThatPokemonWebApp/blob/master/example_whosthatpokemon.gif" alt="whosthatpokemon_example_gif" />
+
 <!-- Table of Contents -->
 # Table of Contents
 - [About the Project](#about-the-project)
